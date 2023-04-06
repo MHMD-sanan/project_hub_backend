@@ -11,7 +11,7 @@ const app = express();
 // setting cors
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://642e421b0e7fec4d67c86398--spontaneous-meringue-de5dc5.netlify.app"],
+    origin: ["http://localhost:3000","https://projectmanage-hub.netlify.app/"],
     method: ["GET", "POST", "DELETE", "PATCH"],
     credentials: true,
   })
@@ -54,14 +54,13 @@ io.on("connection", (socket) => {
   // for sending a message
   socket.on("new message", (newMessageRecieved) => {
     const { chat } = newMessageRecieved;
-    if (!chat.developers) return console.log("chat.developers not defined");
+    if (!chat.developers) return 
     chat.developers.forEach((developer) => {
       if (developer._id === newMessageRecieved.sender._id) return;
       socket.in(developer._id).emit("message recieved", newMessageRecieved);
     });
   });
   socket.off("setup", (userData) => {
-    console.log("user disconnected");
     socket.leave(userData._id);
   });
 });
