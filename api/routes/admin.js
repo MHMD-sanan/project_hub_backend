@@ -11,6 +11,7 @@ const {
   addProjects,
   getAllProjects,
   viewSingleProject,
+  updateStatus
 } = require("../controllers/admin/projects");
 
 const {
@@ -45,6 +46,8 @@ router.patch("/add_team", addTeam);
 router.patch("/add_team_lead", addTeamLead);
 // remove a team member from project
 router.patch("/delete_team_member", deleteTeamMember);
+// update project status
+router.patch("/update_project_status", updateStatus)
 
 
 module.exports = router;

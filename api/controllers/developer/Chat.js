@@ -55,7 +55,6 @@ module.exports.sendMessage = async (req, res) => {
 
     res.json({message,chats});
   } catch (error) {
-    console.log(error.message);
     res.sendStatus(400);
   }
 };

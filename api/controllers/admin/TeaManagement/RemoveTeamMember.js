@@ -22,6 +22,6 @@ module.exports.deleteTeamMember = async (req, res) => {
       .populate("teamLead");
     res.json({ project, status: true });
   } catch (error) {
-    console.log(error);
+    res.sendStatus(400);
   }
 };

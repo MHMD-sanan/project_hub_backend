@@ -11,7 +11,7 @@ const app = express();
 // setting cors
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://projectmanage-hub.netlify.app/"],
+    origin: ["http://localhost:3000","https://projectmanage-hub.netlify.app"],
     method: ["GET", "POST", "DELETE", "PATCH"],
     credentials: true,
   })
@@ -25,9 +25,6 @@ app.use(cookieParser());
 // built-in middleware for json
 app.use(express.json());
 
-// built in midddlewarw for urlencoded form data
-// app.use(express.urlencoded({extended:false}))
-
 app.use(fileUpload({ useTempFiles: true }));
 
 app.use("/admin", require("./api/routes/admin"));
@@ -39,7 +36,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   pingTimeout: 6000, // connection will turn of within 6s if no communu.. to save bandwidth
-  cors: "http://localhost:3000",
+  cors: ["http://localhost:3000","https://projectmanage-hub.netlify.app"],
 });
 // setting socket
 io.on("connection", (socket) => {

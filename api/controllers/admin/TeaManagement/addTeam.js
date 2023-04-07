@@ -34,6 +34,6 @@ module.exports.addTeam = async (req, res) => {
       res.json({ project, status: true });
     }
   } catch (error) {
-    console.log(error);
+    res.sendStatus(400);
   }
 };

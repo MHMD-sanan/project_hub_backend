@@ -52,4 +52,19 @@ module.exports.viewSingleProject = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  };
+};
+  
+module.exports.updateStatus = async (req, res) => {
+  try {
+    await ProjectSchema.findByIdAndUpdate(req.body.selectedProject, {
+      $set: { status: req.body.status }
+    });
+    const project = await ProjectSchema.findById(req.body.selectedProject)
+    .populate("team.developerId")
+    .populate("teamLead");
+  res.json({ project, status: true });
+  } catch (error) {
+    res.sendStatus(400);
+
+  }
+}
