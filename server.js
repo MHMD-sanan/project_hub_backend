@@ -11,7 +11,7 @@ const app = express();
 // setting cors
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://projectmanage-hub.netlify.app"],
+    origin: ["http://localhost:3000","https://projectmanage.netlify.app"],
     method: ["GET", "POST", "DELETE", "PATCH"],
     credentials: true,
   })
@@ -36,7 +36,7 @@ const server = app.listen(PORT, () => {
 
 const io = require("socket.io")(server, {
   pingTimeout: 6000, // connection will turn of within 6s if no communu.. to save bandwidth
-  cors: ["http://localhost:3000","https://projectmanage-hub.netlify.app"],
+  cors: ["http://localhost:3000","https://projectmanage.netlify.app"],
 });
 // setting socket
 io.on("connection", (socket) => {
