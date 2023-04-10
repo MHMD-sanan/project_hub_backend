@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
   // for sending a message
   socket.on("new message", (newMessageRecieved) => {
     const { chat } = newMessageRecieved;
-    if (!chat.developers) return 
+    if (!chat?.developers) return 
     chat.developers.forEach((developer) => {
       if (developer._id === newMessageRecieved.sender._id) return;
       socket.in(developer._id).emit("message recieved", newMessageRecieved);

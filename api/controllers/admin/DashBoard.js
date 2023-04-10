@@ -8,7 +8,8 @@ module.exports.dashboard = asyncHandler(async (req, res) => {
   const notStartedCount = await projectScheme.find({status:"not started"}).count();
   const startedCount = await projectScheme.find({status:"started"}).count();
   const dueCount = await projectScheme.find({status:"due"}).count();
-  const completedCount = await projectScheme.find({status:"completed"}).count();
+  const completedCount = await projectScheme.find({ status: "completed" }).count();
+  const timeline = await projectScheme.find({});
   res.send({
     developersCount,
     projectsCount,
@@ -16,5 +17,6 @@ module.exports.dashboard = asyncHandler(async (req, res) => {
     startedCount,
     dueCount,
     completedCount,
+    timeline
   });
 });

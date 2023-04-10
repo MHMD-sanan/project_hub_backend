@@ -17,7 +17,7 @@ module.exports.login = async (req, res) => {
       const refreshToken = jwt.sign(
         { email: details.email },
         process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: 60 * 60 }
+        { expiresIn: 24 * 60 * 60 * 1000 }
       );
       // saving saving refresh token in database
       details.refreshToken = refreshToken;
