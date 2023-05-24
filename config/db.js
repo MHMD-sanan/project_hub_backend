@@ -9,5 +9,3 @@ mongoose.connection.on("connected",(err)=>{
         console.log("db connected");
     }
 })
-
-// "mongodb://localhost:27017/projectManagement"
