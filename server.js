@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const { PORT } = process.env;
 const app = express();
@@ -29,6 +30,22 @@ app.use(fileUpload({ useTempFiles: true }));
 
 app.use("/admin", require("./api/routes/admin"));
 app.use("/developer", require("./api/routes/developer"));
+
+app.get("/test", (req, res) => {
+  res.send("Ok server is working");
+  console.log("server is working");
+})
+
+// -----------deployment-----------
+const __direname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  console.log(__direname1)
+  app.use(express.static(path.join(__direname1, "/client/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__direname1,"build", "index.html"))
+  );
+}
+// -----------deployment-----------
 
 const server = app.listen(PORT, () => {
   console.log(`server started at ${PORT}`);
